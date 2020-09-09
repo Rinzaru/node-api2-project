@@ -11,6 +11,7 @@ server.use(
     methods: ["GET"],
   })
 );
+server.use("/api/posts", postRouter);
 server.use(welcomeRouter);
 server.use(postRouter);
 

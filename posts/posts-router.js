@@ -4,7 +4,7 @@ const router = express.Router();
 
 /********* GET REQUESTS ********/
 
-router.get("/api/posts", (req, res) => {
+router.get("/", (req, res) => {
   posts
     .find()
     .then((users) => {
@@ -15,7 +15,7 @@ router.get("/api/posts", (req, res) => {
     });
 });
 
-router.get("/api/posts/:id", (req, res) => {
+router.get("/:id", (req, res) => {
   posts
     .findById(req.params.id)
     .then((post) => {
@@ -24,7 +24,7 @@ router.get("/api/posts/:id", (req, res) => {
     .catch(() => res.status(500).json({ error: "Error Loading Post" }));
 });
 
-router.get("/api/posts/:id/comments", (req, res) => {
+router.get("/:id/comments", (req, res) => {
   posts
     .findPostComments(req.params.id)
     .then((comment) => {
@@ -37,7 +37,7 @@ router.get("/api/posts/:id/comments", (req, res) => {
 
 /********* POST REQUESTS ********/
 
-router.post("/api/posts", (req, res) => {
+router.post("/", (req, res) => {
   posts
     .insert(req.body)
     .then((post) => {
@@ -48,7 +48,7 @@ router.post("/api/posts", (req, res) => {
     });
 });
 
-router.post("/api/posts/:id/comments", (req, res) => {
+router.post("/:id/comments", (req, res) => {
   posts
     .insertComment(req.body)
     .then((comment) => {
@@ -61,7 +61,7 @@ router.post("/api/posts/:id/comments", (req, res) => {
 
 /********* PUT REQUESTS ********/
 
-router.put("/api/posts/:id", (req, res) => {
+router.put("/:id", (req, res) => {
   const changes = req.body;
   posts
     .update(req.params.id, changes)
@@ -78,7 +78,7 @@ router.put("/api/posts/:id", (req, res) => {
 });
 
 /********* DELETE REQUESTS ********/
-router.delete("/api/posts/:id", (req, res) => {
+router.delete("/:id", (req, res) => {
   posts
     .remove(req.params.id)
     .then((post) => {
